@@ -6,6 +6,7 @@ import { useEditPhotoContext } from '@/shared/context/EditPhotoContext';
 import { handleError } from '@/shared/utils/handleError';
 import { Camera, PencilSimple } from 'phosphor-react';
 
+
 interface EditPhotoModalProps extends React.HTMLAttributes<HTMLDivElement> {
   selectedPhoto: string | null;
   onAddPhoto?: (photo: string | null) => void;
@@ -26,18 +27,24 @@ export default function EditPhotoModal({
   const handleAddPhoto = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      let hasError = false;
+
       if (file.size > MAX_IMAGE_SIZE) {
         handleError(
           'A foto selecionada ultrapassa o tamanho permitido. Tamanho máximo aceito 8MP'
         );
-        return;
+        hasError = true;
       }
       if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
         handleError(
-          'A foto deve estar em um dos formatos permitidos. Formatos aceitos: jpg ou png.'
+          'A foto deve estar em um dos formatos permitidos. Formatos aceitos: jpg ou png.',
         );
-        return;
+        hasError = true;
       }
+
+      if (hasError)
+        return;
+
       const reader = new FileReader();
       reader.onload = e => {
         if (onAddPhoto) onAddPhoto(e.target?.result as string);

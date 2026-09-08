@@ -9,8 +9,7 @@ const navItems = [
   { href: '/account/personal-info', label: 'Informações pessoais' },
   { href: '/account/profile', label: 'Perfil' },
   { href: '/account/schedule', label: 'Agenda' },
-  { href: '/account/password', label: 'Senha' },
-  { href: '/account/account-management', label: 'Gestão de conta' },
+  { href: '/account/password', label: 'Alterar senha' },
 ];
 
 export default function AccountSidebar() {
@@ -39,6 +38,17 @@ export default function AccountSidebar() {
               {label}
             </Link>
           ))}
+
+          <Link
+            href="/account/account-management"
+            className={`mt-20 px-2 py-4 rounded-md text-base font-medium transition-all w-full justify-start inline-flex items-center 
+            ${
+              pathname === '/account/account-management'
+                ? 'text-foreground'
+                : 'text-foreground/60 hover:bg-gray-100 hover:text-foreground'
+            }`}
+          >Gestão da conta
+          </Link>
         </nav>
       </aside>
 

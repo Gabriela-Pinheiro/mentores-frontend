@@ -111,10 +111,11 @@ export function FormFields({ mentor }: FormFieldsProps) {
               {specialty}
             </div>
           ))}
-
-          <span className="text-black-200 leading-[1.2rem] [&_strong]:font-semibold">
-            <strong>{selectedCount}/6</strong> especialidades
-          </span>
+          <div className="col-span-3 flex justify-end">
+            <span className="text-black-200 leading-[1.2rem] [&_strong]:font-semibold">
+              <strong>{selectedCount}/6</strong> especialidades
+            </span>
+          </div>
         </div>
       </div>
 
